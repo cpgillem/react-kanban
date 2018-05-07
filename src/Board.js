@@ -17,7 +17,7 @@ class Board extends Component {
                     index={index}
                     name={item.name}
                     desc={item.desc}
-                    key={item.name}
+                    key={index}
                 />
             );
 

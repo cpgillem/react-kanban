@@ -43,7 +43,9 @@ class App extends Component {
                     name: this.state.nameInput,
                     desc: this.state.descInput,
                 }
-            ])
+            ]),
+            nameInput: '',
+            descInput: '',
         });
     }
 
@@ -70,7 +72,12 @@ class App extends Component {
     }
 
     handleDelete(i) {
-        
+        const items = this.state.items.slice();
+        items.splice(i, 1);
+
+        this.setState({
+            items: items,
+        })
     }
 
     render() {
