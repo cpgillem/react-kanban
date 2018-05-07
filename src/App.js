@@ -14,6 +14,9 @@ class App extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleDescChange = this.handleDescChange.bind(this);
+        this.handleMoveLeft = this.handleMoveLeft.bind(this);
+        this.handleMoveRight = this.handleMoveRight.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     handleNameChange(newName) {
@@ -44,6 +47,32 @@ class App extends Component {
         });
     }
 
+    handleMoveLeft(i) {
+        const items = this.state.items.slice();
+        if (items[i].section > 0) {
+            items[i].section -= 1;
+        }
+
+        this.setState({
+            items: items,
+        });
+    }
+
+    handleMoveRight(i) {
+        const items = this.state.items.slice();
+        if (items[i].section < 2) {
+            items[i].section += 1;
+        }
+
+        this.setState({
+            items: items,
+        });
+    }
+
+    handleDelete(i) {
+        
+    }
+
     render() {
         return (
             <div>
@@ -55,7 +84,12 @@ class App extends Component {
                     onDescChange={this.handleDescChange}
                     onSubmit={this.handleSubmit}
                 />
-                <Board items={this.state.items}/>
+                <Board
+                    onMoveLeft={this.handleMoveLeft}
+                    onMoveRight={this.handleMoveRight}
+                    onDelete={this.handleDelete}
+                    items={this.state.items}
+                />
             </div>
         );
     }

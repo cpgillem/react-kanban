@@ -8,8 +8,19 @@ class Board extends Component {
         const done = [];
 
         // Add a card to the proper section for each item.
-        this.props.items.forEach((item) => {
-            let card = <Card name={item.name} desc={item.desc} key={item.name}/>;
+        this.props.items.forEach((item, index) => {
+            let card = (
+                <Card
+                    onMoveLeft={this.props.onMoveLeft}
+                    onMoveRight={this.props.onMoveRight}
+                    onDelete={this.props.onDelete}
+                    index={index}
+                    name={item.name}
+                    desc={item.desc}
+                    key={item.name}
+                />
+            );
+
             if (item.section == 0) { // To Do
                 todo.push(card);
             } else if (item.section == 1) { // In Progress
