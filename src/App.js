@@ -1,11 +1,61 @@
 import React, { Component } from "react";
+import Form from "./Form";
+import Board from "./Board";
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            nameInput: '',
+            descInput: '',
+            items: [],
+        };
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleNameChange = this.handleNameChange.bind(this);
+        this.handleDescChange = this.handleDescChange.bind(this);
+    }
+
+    handleNameChange(newName) {
+        this.setState({
+            nameInput: newName,
+        });
+    }
+
+    handleDescChange(newDesc) {
+        this.setState({
+            descInput: newDesc,
+        });
+    }
+
+    handleSubmit() {
+        // Get a copy of the items list.
+        const items = this.state.items.slice();
+
+        // Add the new item.
+        this.setState({
+            items: items.concat([
+                {
+                    section: 0,
+                    name: this.state.nameInput,
+                    desc: this.state.descInput,
+                }
+            ])
+        });
+    }
+
     render() {
         return (
             <div>
                 <h1>React Kanban Demo</h1>
-                {/* TODO: Other components */}
+                <Form
+                    name={this.state.nameInput}
+                    desc={this.state.descInput}
+                    onNameChange={this.handleNameChange}
+                    onDescChange={this.handleDescChange}
+                    onSubmit={this.handleSubmit}
+                />
+                <Board items={this.state.items}/>
             </div>
         );
     }

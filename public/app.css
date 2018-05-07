@@ -1,0 +1,15 @@
+.section {
+    width: 200px;
+    float: left;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    border: 1px solid red;
+    padding: 5px;
+}
