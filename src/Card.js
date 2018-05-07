@@ -4,17 +4,23 @@ class Card extends Component {
     constructor(props) {
         super(props);
 
-        this.handleMoveLeft = this.handleMoveLeft.bind(this);
-        this.handleMoveRight = this.handleMoveRight.bind(this);
+        this.handleMoveToDo = this.handleMoveToDo.bind(this);
+        this.handleMoveInProgress = this.handleMoveInProgress.bind(this);
+        this.handleMoveDone = this.handleMoveDone.bind(this);
+
         this.handleDelete = this.handleDelete.bind(this);
     }
 
-    handleMoveLeft(e) {
-        this.props.onMoveLeft(this.props.index);
+    handleMoveToDo(e) {
+        this.props.onMove(this.props.index, 0);
     }
 
-    handleMoveRight(e) {
-        this.props.onMoveRight(this.props.index);
+    handleMoveInProgress(e) {
+        this.props.onMove(this.props.index, 1);
+    }
+
+    handleMoveDone(e) {
+        this.props.onMove(this.props.index, 2);
     }
 
     handleDelete(e) {
@@ -26,9 +32,10 @@ class Card extends Component {
             <li>
                 <strong>{this.props.name}</strong>
                 <p>{this.props.desc}</p>
-                <a href="#" onClick={this.handleMoveLeft}>Left</a>{" "}
-                <a href="#" onClick={this.handleMoveRight}>Right</a>{" "}
-                <a href="#" onClick={this.handleDelete}>Delete</a>{" "}
+                <a href="#" onClick={this.handleMoveToDo}>Move to ToDo</a><br/>
+                <a href="#" onClick={this.handleMoveInProgress}>Move to In Progress</a><br/>
+                <a href="#" onClick={this.handleMoveDone}>Move to Done</a><br/>
+                <a href="#" onClick={this.handleDelete}>Delete</a>
             </li>
         );
     }

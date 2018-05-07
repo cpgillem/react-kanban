@@ -11,8 +11,7 @@ class Board extends Component {
         this.props.items.forEach((item, index) => {
             let card = (
                 <Card
-                    onMoveLeft={this.props.onMoveLeft}
-                    onMoveRight={this.props.onMoveRight}
+                    onMove={this.props.onMove}
                     onDelete={this.props.onDelete}
                     index={index}
                     name={item.name}
