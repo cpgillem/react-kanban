@@ -7,3 +7,9 @@ ul {
 .card {
     margin-bottom: 10px;
 }
+
+.section {
+    background-color: #dddddd;
+    padding: 10px;
+    min-height: 750px;
+}
