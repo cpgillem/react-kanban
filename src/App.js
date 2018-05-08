@@ -5,7 +5,7 @@ class App extends Component {
     constructor(props) {
         super(props);
 
-        // TEMP: Sample sections
+        // Sample sections
         const sampleSections = new Map();
         sampleSections.set(0, {
             title: 'ToDo',

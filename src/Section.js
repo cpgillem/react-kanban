@@ -58,7 +58,7 @@ class Section extends Component {
         });
 
         return (
-            <div className="col-md-4">
+            <div className="col-md">
                 <div className="section border-light rounded">
                     <h3>{this.props.title}
                         <div className="btn-group float-right">
