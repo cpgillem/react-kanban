@@ -1,39 +1,20 @@
 import React, { Component } from "react";
-import Form from "./Form";
 import Board from "./Board";
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            nameInput: '',
-            descInput: '',
             items: [],
         };
 
         // Bind "this" to each handler function so "this" refers to the App instance.
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleNameChange = this.handleNameChange.bind(this);
-        this.handleDescChange = this.handleDescChange.bind(this);
         this.handleItemNameChange = this.handleItemNameChange.bind(this);
         this.handleItemDescChange = this.handleItemDescChange.bind(this);
         this.handleMove = this.handleMove.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
-    }
-
-    handleNameChange(newName) {
-        // Change the name input in the app's state.
-        this.setState({
-            nameInput: newName,
-        });
-    }
-
-    handleDescChange(newDesc) {
-        // Change the description input in the app's state.
-        this.setState({
-            descInput: newDesc,
-        });
+        this.handleAdd = this.handleAdd.bind(this);
     }
 
     handleItemNameChange(i, newName) {
@@ -55,25 +36,6 @@ class App extends Component {
 
         this.setState({
             items: items,
-        });
-    }
-
-    handleSubmit() {
-        // Create a copy of the list of items in state.
-        const items = this.state.items.slice();
-
-        // Add the new item.
-        this.setState({
-            items: items.concat([
-                {
-                    section: 0,
-                    name: this.state.nameInput,
-                    desc: this.state.descInput,
-                    editing: false,
-                }
-            ]),
-            nameInput: '',
-            descInput: '',
         });
     }
 
@@ -113,17 +75,26 @@ class App extends Component {
         })
     }
 
+    handleAdd() {
+        this.setState({
+            items: this.state.items.concat([{
+                section: 0,
+                name: '',
+                desc: '',
+                editing: true,
+            }]),
+        });
+    }
+
     render() {
         return (
             <div className="container">
                 <h1>React Kanban Demo</h1>
-                <Form
-                    name={this.state.nameInput}
-                    desc={this.state.descInput}
-                    onNameChange={this.handleNameChange}
-                    onDescChange={this.handleDescChange}
-                    onSubmit={this.handleSubmit}
-                />
+                <div className="row">
+                    <div className="col-sm">
+                        <button className="btn btn-primary" onClick={this.handleAdd}>Add</button>
+                    </div>
+                </div>
                 <Board
                     onMove={this.handleMove}
                     onEdit={this.handleEdit}
