@@ -1,16 +1,5 @@
-.section {
-    width: 200px;
-    float: left;
-}
-
 ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
-}
-
-li.card {
-}
-
-li.editor {
 }
