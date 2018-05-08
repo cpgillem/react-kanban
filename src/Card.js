@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { DragSource } from "react-dnd";
 
 class Card extends Component {
     constructor(props) {
@@ -38,7 +39,9 @@ class Card extends Component {
     }
 
     render() {
-        return (
+        const { connectDragSource } = this.props;
+
+        return connectDragSource((
             <li className="card shadow">
                 <div className="card-header">
                     {this.props.name}
@@ -51,8 +54,26 @@ class Card extends Component {
                     <p className="card-text">{this.props.desc}</p>
                 </div>
             </li>
-        );
+        ));
     }
 }
 
-export default Card;
+const cardSource = {
+    beginDrag(props) {
+        return {
+            id: props.id,
+            name: props.name,
+            desc: props.desc,
+            onMove: props.onMove,
+        };
+    },
+}
+
+function collect(connect, monitor) {
+    return {
+        connectDragSource: connect.dragSource(),
+        isDragging: monitor.isDragging(),
+    };
+}
+
+export default DragSource("item", cardSource, collect)(Card);

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Section from "./Section";
 import SectionEditor from "./SectionEditor";
+import HTML5Backend from "react-dnd-html5-backend";
+import { DragDropContext } from "react-dnd";
 
 class App extends Component {
     constructor(props) {
@@ -67,7 +69,8 @@ class App extends Component {
         const items = new Map(this.state.items);
 
         // Ensure that the destination is allowed.
-        if (newSection >= 0 && newSection <= 2) {
+        console.log(items);
+        if (this.state.sections.has(newSection)) {
             items.get(id).section = newSection;
         }
 
@@ -216,4 +219,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default DragDropContext(HTML5Backend)(App);

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Card from "./Card";
 import CardEditor from "./CardEditor";
+import { DropTarget } from "react-dnd";
 
 class Section extends Component {
     constructor(props) {
@@ -25,6 +26,8 @@ class Section extends Component {
 
     render() {
         const cards = [];
+        const { connectDropTarget } = this.props;
+
         this.props.items.forEach((item, id) => {
             // Make sure the item belongs to this section.
             if (item.section === this.props.id) {
@@ -57,7 +60,7 @@ class Section extends Component {
             }
         });
 
-        return (
+        return connectDropTarget((
             <div className="col-md">
                 <div className="section border-light rounded">
                     <h3>{this.props.title}
@@ -73,8 +76,21 @@ class Section extends Component {
                     </ul>
                 </div>
             </div>
-        );
+        ));
     }
 }
 
-export default Section;
+const sectionTarget = {
+    drop(props, monitor, component) {
+        const item = monitor.getItem();
+        item.onMove(item.id, props.id);
+    },
+}
+
+function collect(connect, monitor) {
+    return {
+        connectDropTarget: connect.dropTarget(),
+    };
+}
+
+export default DropTarget("item", sectionTarget, collect)(Section);
