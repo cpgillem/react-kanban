@@ -4,8 +4,11 @@ import Board from "./Board";
 class App extends Component {
     constructor(props) {
         super(props);
+
+        // Items and sections are "resources" with unique IDs.
         this.state = {
-            items: [],
+            nextId: 1,
+            items: new Map(),
         };
 
         // Bind "this" to each handler function so "this" refers to the App instance.
@@ -17,34 +20,34 @@ class App extends Component {
         this.handleAdd = this.handleAdd.bind(this);
     }
 
-    handleItemNameChange(i, newName) {
-        const items = this.state.items.slice();
+    handleItemNameChange(id, newName) {
+        const items = new Map(this.state.items);
 
         // Change the item's name.
-        items[i].name = newName;
+        items.get(id).name = newName;
 
         this.setState({
             items: items,
         });
     }
 
-    handleItemDescChange(i, newDesc) {
-        const items = this.state.items.slice();
+    handleItemDescChange(id, newDesc) {
+        const items = new Map(this.state.items);
 
         // Change the item's description.
-        items[i].desc = newDesc;
+        items.get(id).desc = newDesc;
 
         this.setState({
             items: items,
         });
     }
 
-    handleMove(i, dest) {
-        const items = this.state.items.slice();
+    handleMove(id, newSection) {
+        const items = new Map(this.state.items);
 
         // Ensure that the destination is allowed.
-        if (dest >= 0 && dest <= 2) {
-            items[i].section = dest;
+        if (newSection >= 0 && newSection <= 2) {
+            items.get(id).section = newSection;
         }
 
         // Set the state to contain the newly updated list.
@@ -53,22 +56,22 @@ class App extends Component {
         });
     }
 
-    handleEdit(i, editing) {
-        const items = this.state.items.slice();
+    handleEdit(id, editing) {
+        const items = new Map(this.state.items);
 
         // Switch the item to edit mode if editing is true.
-        items[i].editing = editing;
+        items.get(id).editing = editing;
 
         this.setState({
             items: items,
         });
     }
 
-    handleDelete(i) {
-        const items = this.state.items.slice();
+    handleDelete(id) {
+        const items = new Map(this.state.items);
 
-        // Remove the item from the list.
-        items.splice(i, 1);
+        // Remove the item from the map by ID.
+        items.delete(id);
 
         this.setState({
             items: items,
@@ -76,20 +79,32 @@ class App extends Component {
     }
 
     handleAdd(section) {
+        // Create a copy of the items map.
+        const items = new Map(this.state.items);
+
+        // Add a new blank item to the map.
+        items.set(this.state.nextId, {
+           section: section,
+           name: '',
+           desc: '',
+           editing: true,
+        });
+
+        // Set the state to the new map and increment the next ID.
         this.setState({
-            items: this.state.items.concat([{
-                section: section,
-                name: '',
-                desc: '',
-                editing: true,
-            }]),
+            nextId: this.state.nextId + 1,
+            items: items,
         });
     }
 
     render() {
         return (
             <div className="container">
-                <h1>React Kanban Demo</h1>
+                <h1>React Kanban Demo
+                    <div className="button-group float-right">
+                        <button className="btn btn-primary">Add Section</button>
+                    </div>
+                </h1>
                 <hr/>
                 <Board
                     onAdd={this.handleAdd}

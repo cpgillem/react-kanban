@@ -5,6 +5,7 @@ TODO:
 - [x] CSS styling
 - Implement drag and drop
 - Custom boards
+- Ordering items within board
 
 IDEAS:
 - Backend with JSON API
