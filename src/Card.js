@@ -49,11 +49,6 @@ class Card extends Component {
                 </div>
                 <div className="card-body">
                     <p className="card-text">{this.props.desc}</p>
-                    <div className="btn-group">
-                        <button className="btn btn-secondary" onClick={this.handleMoveToDo}>ToDo</button>
-                        <button className="btn btn-secondary" onClick={this.handleMoveInProgress}>In Progress</button>
-                        <button className="btn btn-secondary" onClick={this.handleMoveDone}>Done</button>
-                    </div>
                 </div>
             </li>
         );
