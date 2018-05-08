@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Card from "./Card";
 import CardEditor from "./CardEditor";
+import Section from "./Section";
 
 class Board extends Component {
     constructor(props) {
@@ -73,25 +74,28 @@ class Board extends Component {
         return (
             <div className="row">
                 <div className="col-md-4">
-                    <h3>To Do <button className="btn btn-primary float-right" onClick={this.handleAddToDo}>+</button></h3>
-                    <hr/>
-                    <ul id="todo">
-                        {todo}
-                    </ul>
+                    <Section
+                        id={0}
+                        title="ToDo"
+                        onAdd={this.props.onAdd}
+                        items={todo}
+                    />
                 </div>
                 <div className="col-md-4">
-                    <h3>In Progress <button className="btn btn-primary float-right" onClick={this.handleAddInProgress}>+</button></h3>
-                    <hr/>
-                    <ul id="inProgress">
-                        {inProgress}
-                    </ul>
+                    <Section
+                        id={1}
+                        title="In Progress"
+                        onAdd={this.props.onAdd}
+                        items={inProgress}
+                    />
                 </div>
                 <div className="col-md-4">
-                    <h3>Done <button className="btn btn-primary float-right" onClick={this.handleAddDone}>+</button></h3>
-                    <hr/>
-                    <ul id="done">
-                        {done}
-                    </ul>
+                    <Section
+                        id={2}
+                        title="Done"
+                        onAdd={this.props.onAdd}
+                        items={done}
+                    />
                 </div>
             </div>
         );
