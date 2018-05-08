@@ -27,13 +27,20 @@ class CardEditor extends Component {
     render() {
         return (
             <li className="card editor">
-                <form onSubmit={this.handleSubmit}>
-                    <label>Name</label><br/>
-                    <input type="text" id="name" value={this.props.name} onChange={this.handleNameChange}/><br/>
-                    <label>Description</label><br/>
-                    <input type="text" id="desc" value={this.props.desc} onChange={this.handleDescChange}/>
-                    <input type="submit" value="Done"/>
-                </form>
+                <div className="card-body">
+                    <form onSubmit={this.handleSubmit}>
+                        <div className="form-group">
+                            <label>Name</label>
+                            <input className="form-control" type="text" id="name" value={this.props.name} onChange={this.handleNameChange}/>
+                        </div>
+
+                        <div className="form-group">
+                            <label>Description</label>
+                            <input className="form-control" type="text" id="desc" value={this.props.desc} onChange={this.handleDescChange}/>
+                        </div>
+                        <input className="btn btn-primary" type="submit" value="Done"/>
+                    </form>
+                </div>
             </li>
         );
     }

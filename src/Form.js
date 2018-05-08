@@ -31,19 +31,24 @@ class Form extends Component {
         const desc = this.props.desc;
 
         return (
-            <form onSubmit={this.handleSubmit}>
-                <div>
-                    <label>Name</label>
-                    <input type="text" value={name} onChange={this.handleNameChange}/>
-                </div>
+            <div className="row">
+                <div className="col-sm-12">
+                    <form onSubmit={this.handleSubmit}>
+                        <div className="form-group">
+                            <label>Name</label>
+                            <input className="form-control" type="text" value={name} onChange={this.handleNameChange}/>
+                        </div>
 
-                <div>
-                    <label>Description</label>
-                    <input type="text" value={desc} onChange={this.handleDescChange}/>
-                </div>
+                        <div className="form-group">
+                            <label>Description</label>
+                            <input className="form-control" type="text" value={desc} onChange={this.handleDescChange}/>
+                        </div>
 
-                <input type="submit" value="Submit"/>
-            </form>
+                        <input className="btn btn-primary" type="submit" value="Submit"/>
+                    </form>
+                    <hr/>
+                </div>
+            </div>
         );
     }
 }

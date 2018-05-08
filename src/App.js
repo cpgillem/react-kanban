@@ -115,7 +115,7 @@ class App extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <h1>React Kanban Demo</h1>
                 <Form
                     name={this.state.nameInput}

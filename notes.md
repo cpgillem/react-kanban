@@ -1,4 +1,4 @@
-Used this tutorial as a guide and for some snippets https://www.kirupa.com/react/creating_single_page_app_react_using_react_router.htm
+Used this tutorial as a guide. https://www.kirupa.com/react/creating_single_page_app_react_using_react_router.htm
 
 TODO:
 - [x] Replace moving left/right with direct moving

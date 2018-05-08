@@ -48,20 +48,20 @@ class Board extends Component {
         });
 
         return (
-            <div>
-                <div className="section">
+            <div className="row">
+                <div className="col-md-4">
                     <h3>To Do</h3>
                     <ul id="todo">
                         {todo}
                     </ul>
                 </div>
-                <div className="section">
+                <div className="col-md-4">
                     <h3>In Progress</h3>
                     <ul id="inProgress">
                         {inProgress}
                     </ul>
                 </div>
-                <div className="section">
+                <div className="col-md-4">
                     <h3>Done</h3>
                     <ul id="done">
                         {done}
