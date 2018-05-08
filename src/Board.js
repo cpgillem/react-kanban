@@ -3,6 +3,29 @@ import Card from "./Card";
 import CardEditor from "./CardEditor";
 
 class Board extends Component {
+    constructor(props) {
+        super(props);
+
+        this.handleAddToDo = this.handleAddToDo.bind(this);
+        this.handleAddInProgress = this.handleAddInProgress.bind(this);
+        this.handleAddDone = this.handleAddDone.bind(this);
+    }
+
+    handleAddToDo() {
+        // Add a blank card to the todo section.
+        this.props.onAdd(0);
+    }
+
+    handleAddInProgress() {
+        // Add a blank card to the in progress section.
+        this.props.onAdd(1);
+    }
+
+    handleAddDone() {
+        // Add a blank card to the done section.
+        this.props.onAdd(2);
+    }
+
     render() {
         const todo = [];
         const inProgress = [];
@@ -50,19 +73,22 @@ class Board extends Component {
         return (
             <div className="row">
                 <div className="col-md-4">
-                    <h3>To Do</h3>
+                    <h3>To Do <button className="btn btn-primary float-right" onClick={this.handleAddToDo}>+</button></h3>
+                    <hr/>
                     <ul id="todo">
                         {todo}
                     </ul>
                 </div>
                 <div className="col-md-4">
-                    <h3>In Progress</h3>
+                    <h3>In Progress <button className="btn btn-primary float-right" onClick={this.handleAddInProgress}>+</button></h3>
+                    <hr/>
                     <ul id="inProgress">
                         {inProgress}
                     </ul>
                 </div>
                 <div className="col-md-4">
-                    <h3>Done</h3>
+                    <h3>Done <button className="btn btn-primary float-right" onClick={this.handleAddDone}>+</button></h3>
+                    <hr/>
                     <ul id="done">
                         {done}
                     </ul>

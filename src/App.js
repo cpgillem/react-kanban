@@ -75,10 +75,10 @@ class App extends Component {
         })
     }
 
-    handleAdd() {
+    handleAdd(section) {
         this.setState({
             items: this.state.items.concat([{
-                section: 0,
+                section: section,
                 name: '',
                 desc: '',
                 editing: true,
@@ -90,12 +90,9 @@ class App extends Component {
         return (
             <div className="container">
                 <h1>React Kanban Demo</h1>
-                <div className="row">
-                    <div className="col-sm">
-                        <button className="btn btn-primary" onClick={this.handleAdd}>Add</button>
-                    </div>
-                </div>
+                <hr/>
                 <Board
+                    onAdd={this.handleAdd}
                     onMove={this.handleMove}
                     onEdit={this.handleEdit}
                     onItemNameChange={this.handleItemNameChange}
