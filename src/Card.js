@@ -39,18 +39,20 @@ class Card extends Component {
 
     render() {
         return (
-            <li className="card">
+            <li className="card shadow">
                 <div className="card-header">
                     {this.props.name}
+                    <div className="btn-group float-right">
+                        <button className="btn btn-secondary btn-sm" onClick={this.handleEdit}>&#9998;</button>
+                        <button className="btn btn-danger btn-sm" onClick={this.handleDelete}>&#10007;</button>
+                    </div>
                 </div>
                 <div className="card-body">
                     <p className="card-text">{this.props.desc}</p>
-                    <div className="btn-group-vertical">
-                        <button className="btn btn-secondary" onClick={this.handleMoveToDo}>Move to ToDo</button>
-                        <button className="btn btn-secondary" onClick={this.handleMoveInProgress}>Move to In Progress</button>
-                        <button className="btn btn-secondary" onClick={this.handleMoveDone}>Move to Done</button>
-                        <button className="btn btn-secondary" onClick={this.handleEdit}>Edit</button>
-                        <button className="btn btn-danger" onClick={this.handleDelete}>Delete</button>
+                    <div className="btn-group">
+                        <button className="btn btn-secondary" onClick={this.handleMoveToDo}>ToDo</button>
+                        <button className="btn btn-secondary" onClick={this.handleMoveInProgress}>In Progress</button>
+                        <button className="btn btn-secondary" onClick={this.handleMoveDone}>Done</button>
                     </div>
                 </div>
             </li>

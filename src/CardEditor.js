@@ -26,7 +26,7 @@ class CardEditor extends Component {
 
     render() {
         return (
-            <li className="card editor">
+            <li className="card editor shadow border border-primary">
                 <div className="card-body">
                     <form onSubmit={this.handleSubmit}>
                         <div className="form-group">
