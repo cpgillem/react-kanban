@@ -28,9 +28,9 @@ class CardEditor extends Component {
         return (
             <li className="card editor">
                 <form onSubmit={this.handleSubmit}>
-                    <label for="name">Name</label><br/>
+                    <label>Name</label><br/>
                     <input type="text" id="name" value={this.props.name} onChange={this.handleNameChange}/><br/>
-                    <label for="desc">Description</label><br/>
+                    <label>Description</label><br/>
                     <input type="text" id="desc" value={this.props.desc} onChange={this.handleDescChange}/>
                     <input type="submit" value="Done"/>
                 </form>

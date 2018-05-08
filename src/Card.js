@@ -42,11 +42,11 @@ class Card extends Component {
             <li className="card">
                 <strong>{this.props.name}</strong>
                 <p>{this.props.desc}</p>
-                <a href="#" onClick={this.handleMoveToDo}>Move to ToDo</a><br/>
-                <a href="#" onClick={this.handleMoveInProgress}>Move to In Progress</a><br/>
-                <a href="#" onClick={this.handleMoveDone}>Move to Done</a><br/>
-                <a href="#" onClick={this.handleEdit}>Edit</a><br/>
-                <a href="#" onClick={this.handleDelete}>Delete</a>
+                <button onClick={this.handleMoveToDo}>Move to ToDo</button><br/>
+                <button onClick={this.handleMoveInProgress}>Move to In Progress</button><br/>
+                <button onClick={this.handleMoveDone}>Move to Done</button><br/>
+                <button onClick={this.handleEdit}>Edit</button><br/>
+                <button onClick={this.handleDelete}>Delete</button>
             </li>
         );
     }
