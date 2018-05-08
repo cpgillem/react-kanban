@@ -11,17 +11,17 @@ class CardEditor extends Component {
 
     handleSubmit(e) {
         // Switch off editing mode for this card.
-        this.props.onEdit(this.props.index, false);
+        this.props.onEdit(this.props.id, false);
 
         e.preventDefault();
     }
 
     handleNameChange(e) {
-        this.props.onItemNameChange(this.props.index, e.target.value);
+        this.props.onItemNameChange(this.props.id, e.target.value);
     }
 
     handleDescChange(e) {
-        this.props.onItemDescChange(this.props.index, e.target.value);
+        this.props.onItemDescChange(this.props.id, e.target.value);
     }
 
     render() {

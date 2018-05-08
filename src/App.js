@@ -5,10 +5,26 @@ class App extends Component {
     constructor(props) {
         super(props);
 
+        // TEMP: Sample sections
+        const sampleSections = new Map();
+        sampleSections.set(0, {
+            title: 'ToDo',
+            editing: false,
+        });
+        sampleSections.set(1, {
+            title: 'In Progress',
+            editing: false,
+        });
+        sampleSections.set(2, {
+            title: 'Done',
+            editing: false,
+        });
+
         // Items and sections are "resources" with unique IDs.
         this.state = {
-            nextId: 1,
+            nextId: 3,
             items: new Map(),
+            sections: sampleSections,
         };
 
         // Bind "this" to each handler function so "this" refers to the App instance.
@@ -18,6 +34,8 @@ class App extends Component {
         this.handleEdit = this.handleEdit.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.handleAdd = this.handleAdd.bind(this);
+        this.handleSectionEdit = this.handleSectionEdit.bind(this);
+        this.handleSectionTitleChange = this.handleSectionTitleChange.bind(this);
     }
 
     handleItemNameChange(id, newName) {
@@ -97,6 +115,29 @@ class App extends Component {
         });
     }
 
+    handleSectionEdit(id, editing) {
+        const sections = new Map(this.state.sections);
+
+        // Switch the section to edit mode if necessary.
+        sections.get(id).editing = editing;
+
+        this.setState({
+            sections: sections,
+        });
+
+    }
+
+    handleSectionTitleChange(id, newTitle) {
+        const sections = new Map(this.state.sections);
+
+        // Change the section's name.
+        sections.get(id).title = newTitle;
+
+        this.setState({
+            sections: sections,
+        });
+    }
+
     render() {
         return (
             <div className="container">
@@ -110,9 +151,12 @@ class App extends Component {
                     onAdd={this.handleAdd}
                     onMove={this.handleMove}
                     onEdit={this.handleEdit}
+                    onDelete={this.handleDelete}
                     onItemNameChange={this.handleItemNameChange}
                     onItemDescChange={this.handleItemDescChange}
-                    onDelete={this.handleDelete}
+                    onSectionTitleChange={this.handleSectionTitleChange}
+                    onSectionEdit={this.handleSectionEdit}
+                    sections={this.state.sections}
                     items={this.state.items}
                 />
             </div>

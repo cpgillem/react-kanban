@@ -1,24 +1,71 @@
 import React, { Component } from "react";
+import Card from "./Card";
+import CardEditor from "./CardEditor";
 
 class Section extends Component {
     constructor(props) {
         super(props);
 
         this.handleAdd = this.handleAdd.bind(this);
+        this.handleSectionEdit = this.handleSectionEdit.bind(this);
     }
 
     handleAdd() {
         this.props.onAdd(this.props.id);
     }
 
+    handleSectionEdit() {
+        this.props.onSectionEdit(this.props.id, true);
+    }
+
     render() {
+        const cards = [];
+        this.props.items.forEach((item, id) => {
+            // Make sure the item belongs to this section.
+            if (item.section === this.props.id) {
+                // If the item is in edit mode, display a card editor.
+                if (item.editing) {
+                    cards.push((
+                        <CardEditor
+                            onEdit={this.props.onEdit}
+                            onItemNameChange={this.props.onItemNameChange}
+                            onItemDescChange={this.props.onItemDescChange}
+                            name={item.name}
+                            desc={item.desc}
+                            id={id}
+                            key={id}
+                        />
+                    ));
+                } else {
+                    cards.push((
+                        <Card
+                            onMove={this.props.onMove}
+                            onEdit={this.props.onEdit}
+                            onDelete={this.props.onDelete}
+                            name={item.name}
+                            desc={item.desc}
+                            id={id}
+                            key={id}
+                        />
+                    ));
+                }
+            }
+        });
+
         return (
-            <div>
-                <h3>{this.props.title} <button className="btn btn-primary float-right" onClick={this.handleAdd}>+</button></h3>
-                <hr/>
-                <ul>
-                    {this.props.items}
-                </ul>
+            <div className="col-md-4">
+                <div className="section border-light rounded">
+                    <h3>{this.props.title}
+                        <div className="btn-group float-right">
+                            <button className="btn btn-primary" onClick={this.handleAdd}>+</button>
+                            <button className="btn btn-primary" onClick={this.handleSectionEdit}>&#9998;</button>
+                        </div>
+                    </h3>
+                    <hr/>
+                    <ul>
+                        {cards}
+                    </ul>
+                </div>
             </div>
         );
     }

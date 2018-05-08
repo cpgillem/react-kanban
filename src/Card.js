@@ -14,27 +14,27 @@ class Card extends Component {
 
     // Called when the user clicks on "Move to ToDo."
     handleMoveToDo(e) {
-        this.props.onMove(this.props.index, 0);
+        this.props.onMove(this.props.id, 0);
     }
 
     // Called when the user clicks on "Move to In Progress."
     handleMoveInProgress(e) {
-        this.props.onMove(this.props.index, 1);
+        this.props.onMove(this.props.id, 1);
     }
 
     // Called when the user clicks on "Move to Done."
     handleMoveDone(e) {
-        this.props.onMove(this.props.index, 2);
+        this.props.onMove(this.props.id, 2);
     }
 
     // Called when the user clicks on "Edit."
     handleEdit(e) {
-        this.props.onEdit(this.props.index, true);
+        this.props.onEdit(this.props.id, true);
     }
 
     // Called when the user clicks "Delete."
     handleDelete(e) {
-        this.props.onDelete(this.props.index);
+        this.props.onDelete(this.props.id);
     }
 
     render() {
