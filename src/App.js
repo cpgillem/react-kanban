@@ -11,6 +11,7 @@ class App extends Component {
             items: [],
         };
 
+        // Bind "this" to each handler function so "this" refers to the App instance.
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleDescChange = this.handleDescChange.bind(this);
@@ -19,19 +20,21 @@ class App extends Component {
     }
 
     handleNameChange(newName) {
+        // Change the name input in the app's state.
         this.setState({
             nameInput: newName,
         });
     }
 
     handleDescChange(newDesc) {
+        // Change the description input in the app's state.
         this.setState({
             descInput: newDesc,
         });
     }
 
     handleSubmit() {
-        // Get a copy of the items list.
+        // Create a copy of the list of items in state.
         const items = this.state.items.slice();
 
         // Add the new item.
@@ -56,6 +59,7 @@ class App extends Component {
             items[i].section = dest;
         }
 
+        // Set the state to contain the newly updated list.
         this.setState({
             items: items,
         });
@@ -63,6 +67,8 @@ class App extends Component {
 
     handleDelete(i) {
         const items = this.state.items.slice();
+
+        // Remove the item from the list.
         items.splice(i, 1);
 
         this.setState({

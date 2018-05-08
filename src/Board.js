@@ -20,6 +20,7 @@ class Board extends Component {
                 />
             );
 
+            // Decide where to render the card.
             if (item.section == 0) { // To Do
                 todo.push(card);
             } else if (item.section == 1) { // In Progress
