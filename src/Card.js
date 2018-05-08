@@ -8,6 +8,7 @@ class Card extends Component {
         this.handleMoveToDo = this.handleMoveToDo.bind(this);
         this.handleMoveInProgress = this.handleMoveInProgress.bind(this);
         this.handleMoveDone = this.handleMoveDone.bind(this);
+        this.handleEdit = this.handleEdit.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
     }
 
@@ -26,6 +27,11 @@ class Card extends Component {
         this.props.onMove(this.props.index, 2);
     }
 
+    // Called when the user clicks on "Edit."
+    handleEdit(e) {
+        this.props.onEdit(this.props.index, true);
+    }
+
     // Called when the user clicks "Delete."
     handleDelete(e) {
         this.props.onDelete(this.props.index);
@@ -33,12 +39,13 @@ class Card extends Component {
 
     render() {
         return (
-            <li>
+            <li className="card">
                 <strong>{this.props.name}</strong>
                 <p>{this.props.desc}</p>
                 <a href="#" onClick={this.handleMoveToDo}>Move to ToDo</a><br/>
                 <a href="#" onClick={this.handleMoveInProgress}>Move to In Progress</a><br/>
                 <a href="#" onClick={this.handleMoveDone}>Move to Done</a><br/>
+                <a href="#" onClick={this.handleEdit}>Edit</a><br/>
                 <a href="#" onClick={this.handleDelete}>Delete</a>
             </li>
         );

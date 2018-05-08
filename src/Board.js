@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Card from "./Card";
+import CardEditor from "./CardEditor";
 
 class Board extends Component {
     render() {
@@ -12,6 +13,7 @@ class Board extends Component {
             let card = (
                 <Card
                     onMove={this.props.onMove}
+                    onEdit={this.props.onEdit}
                     onDelete={this.props.onDelete}
                     index={index}
                     name={item.name}
@@ -19,6 +21,21 @@ class Board extends Component {
                     key={index}
                 />
             );
+
+            // If the card is in edit mode, switch to a card editor.
+            if (item.editing) {
+                card = (
+                    <CardEditor
+                        onEdit={this.props.onEdit}
+                        onItemNameChange={this.props.onItemNameChange}
+                        onItemDescChange={this.props.onItemDescChange}
+                        index={index}
+                        name={item.name}
+                        desc={item.desc}
+                        key={index}
+                    />
+                );
+            }
 
             // Decide where to render the card.
             if (item.section == 0) { // To Do

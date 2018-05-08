@@ -15,7 +15,10 @@ class App extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleDescChange = this.handleDescChange.bind(this);
+        this.handleItemNameChange = this.handleItemNameChange.bind(this);
+        this.handleItemDescChange = this.handleItemDescChange.bind(this);
         this.handleMove = this.handleMove.bind(this);
+        this.handleEdit = this.handleEdit.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
     }
 
@@ -33,6 +36,28 @@ class App extends Component {
         });
     }
 
+    handleItemNameChange(i, newName) {
+        const items = this.state.items.slice();
+
+        // Change the item's name.
+        items[i].name = newName;
+
+        this.setState({
+            items: items,
+        });
+    }
+
+    handleItemDescChange(i, newDesc) {
+        const items = this.state.items.slice();
+
+        // Change the item's description.
+        items[i].desc = newDesc;
+
+        this.setState({
+            items: items,
+        });
+    }
+
     handleSubmit() {
         // Create a copy of the list of items in state.
         const items = this.state.items.slice();
@@ -44,6 +69,7 @@ class App extends Component {
                     section: 0,
                     name: this.state.nameInput,
                     desc: this.state.descInput,
+                    editing: false,
                 }
             ]),
             nameInput: '',
@@ -60,6 +86,17 @@ class App extends Component {
         }
 
         // Set the state to contain the newly updated list.
+        this.setState({
+            items: items,
+        });
+    }
+
+    handleEdit(i, editing) {
+        const items = this.state.items.slice();
+
+        // Switch the item to edit mode if editing is true.
+        items[i].editing = editing;
+
         this.setState({
             items: items,
         });
@@ -89,6 +126,9 @@ class App extends Component {
                 />
                 <Board
                     onMove={this.handleMove}
+                    onEdit={this.handleEdit}
+                    onItemNameChange={this.handleItemNameChange}
+                    onItemDescChange={this.handleItemDescChange}
                     onDelete={this.handleDelete}
                     items={this.state.items}
                 />
