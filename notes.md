@@ -2,8 +2,9 @@ Used this tutorial as a guide. https://www.kirupa.com/react/creating_single_page
 
 TODO:
 - [x] Replace moving left/right with direct moving
-- CSS styling
+- [x] CSS styling
 - Implement drag and drop
+- Custom boards
 
 IDEAS:
 - Backend with JSON API
