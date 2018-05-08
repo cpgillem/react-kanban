@@ -31,12 +31,12 @@ class CardEditor extends Component {
                     <form onSubmit={this.handleSubmit}>
                         <div className="form-group">
                             <label>Name</label>
-                            <input className="form-control" type="text" id="name" value={this.props.name} onChange={this.handleNameChange}/>
+                            <input className="form-control" type="text" value={this.props.name} onChange={this.handleNameChange}/>
                         </div>
 
                         <div className="form-group">
                             <label>Description</label>
-                            <input className="form-control" type="text" id="desc" value={this.props.desc} onChange={this.handleDescChange}/>
+                            <textarea className="form-control" value={this.props.desc} onChange={this.handleDescChange}></textarea>
                         </div>
                         <input className="btn btn-primary" type="submit" value="Done"/>
                     </form>

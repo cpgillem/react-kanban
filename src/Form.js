@@ -41,7 +41,7 @@ class Form extends Component {
 
                         <div className="form-group">
                             <label>Description</label>
-                            <input className="form-control" type="text" value={desc} onChange={this.handleDescChange}/>
+                            <textarea className="form-control" value={desc} onChange={this.handleDescChange}></textarea>
                         </div>
 
                         <input className="btn btn-primary" type="submit" value="Submit"/>
