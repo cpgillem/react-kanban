@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import Board from "./Board";
+import Section from "./Section";
+import SectionEditor from "./SectionEditor";
 
 class App extends Component {
     constructor(props) {
@@ -166,6 +167,39 @@ class App extends Component {
     }
 
     render() {
+        const sectionComponents = [];
+
+        this.state.sections.forEach((section, id) => {
+            if (section.editing) {
+                sectionComponents.push((
+                    <SectionEditor
+                        onSectionEdit={this.handleSectionEdit}
+                        onSectionTitleChange={this.handleSectionTitleChange}
+                        title={section.title}
+                        id={id}
+                        key={id}
+                    />
+                ));
+            } else {
+                sectionComponents.push((
+                    <Section
+                        onAdd={this.handleAdd}
+                        onMove={this.handleMove}
+                        onEdit={this.handleEdit}
+                        onDelete={this.handleDelete}
+                        onItemNameChange={this.handleItemNameChange}
+                        onItemDescChange={this.handleItemDescChange}
+                        onSectionEdit={this.handleSectionEdit}
+                        onSectionDelete={this.handleSectionDelete}
+                        title={section.title}
+                        items={this.state.items}
+                        id={id}
+                        key={id}
+                    />
+                ));
+            }
+        });
+
         return (
             <div className="container">
                 <h1>React Kanban Demo
@@ -174,19 +208,9 @@ class App extends Component {
                     </div>
                 </h1>
                 <hr/>
-                <Board
-                    onAdd={this.handleAdd}
-                    onMove={this.handleMove}
-                    onEdit={this.handleEdit}
-                    onDelete={this.handleDelete}
-                    onItemNameChange={this.handleItemNameChange}
-                    onItemDescChange={this.handleItemDescChange}
-                    onSectionTitleChange={this.handleSectionTitleChange}
-                    onSectionEdit={this.handleSectionEdit}
-                    onSectionDelete={this.handleSectionDelete}
-                    sections={this.state.sections}
-                    items={this.state.items}
-                />
+                <div className="row">
+                    {sectionComponents}
+                </div>
             </div>
         );
     }
