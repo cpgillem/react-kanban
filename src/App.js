@@ -69,7 +69,6 @@ class App extends Component {
         const items = new Map(this.state.items);
 
         // Ensure that the destination is allowed.
-        console.log(items);
         if (this.state.sections.has(newSection)) {
             items.get(id).section = newSection;
         }

@@ -3,7 +3,7 @@ Used this tutorial as a guide. https://www.kirupa.com/react/creating_single_page
 TODO:
 - [x] Replace moving left/right with direct moving
 - [x] CSS styling
-- Implement drag and drop
+- [x] Implement drag and drop
 - Custom boards
 - Ordering items within board
 
