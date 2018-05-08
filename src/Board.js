@@ -27,6 +27,7 @@ class Board extends Component {
                         onItemNameChange={this.props.onItemNameChange}
                         onItemDescChange={this.props.onItemDescChange}
                         onSectionEdit={this.props.onSectionEdit}
+                        onSectionDelete={this.props.onSectionDelete}
                         title={section.title}
                         items={this.props.items}
                         id={id}

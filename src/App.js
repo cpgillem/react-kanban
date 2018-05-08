@@ -35,6 +35,8 @@ class App extends Component {
         this.handleDelete = this.handleDelete.bind(this);
         this.handleAdd = this.handleAdd.bind(this);
         this.handleSectionEdit = this.handleSectionEdit.bind(this);
+        this.handleSectionAdd = this.handleSectionAdd.bind(this);
+        this.handleSectionDelete = this.handleSectionDelete.bind(this);
         this.handleSectionTitleChange = this.handleSectionTitleChange.bind(this);
     }
 
@@ -115,6 +117,20 @@ class App extends Component {
         });
     }
 
+    handleSectionAdd(e) {
+        const sections = new Map(this.state.sections);
+
+        sections.set(this.state.nextId, {
+            title: '',
+            editing: true
+        });
+
+        this.setState({
+            nextId: this.state.nextId + 1,
+            sections: sections,
+        });
+    }
+
     handleSectionEdit(id, editing) {
         const sections = new Map(this.state.sections);
 
@@ -125,6 +141,17 @@ class App extends Component {
             sections: sections,
         });
 
+    }
+
+    handleSectionDelete(id) {
+        const sections = new Map(this.state.sections);
+
+        // Delete the section by ID.
+        sections.delete(id);
+
+        this.setState({
+            sections: sections,
+        });
     }
 
     handleSectionTitleChange(id, newTitle) {
@@ -143,7 +170,7 @@ class App extends Component {
             <div className="container">
                 <h1>React Kanban Demo
                     <div className="button-group float-right">
-                        <button className="btn btn-primary">Add Section</button>
+                        <button className="btn btn-primary" onClick={this.handleSectionAdd}>Add Section</button>
                     </div>
                 </h1>
                 <hr/>
@@ -156,6 +183,7 @@ class App extends Component {
                     onItemDescChange={this.handleItemDescChange}
                     onSectionTitleChange={this.handleSectionTitleChange}
                     onSectionEdit={this.handleSectionEdit}
+                    onSectionDelete={this.handleSectionDelete}
                     sections={this.state.sections}
                     items={this.state.items}
                 />

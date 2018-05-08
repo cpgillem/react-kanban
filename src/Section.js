@@ -8,6 +8,7 @@ class Section extends Component {
 
         this.handleAdd = this.handleAdd.bind(this);
         this.handleSectionEdit = this.handleSectionEdit.bind(this);
+        this.handleSectionDelete = this.handleSectionDelete.bind(this);
     }
 
     handleAdd() {
@@ -16,6 +17,10 @@ class Section extends Component {
 
     handleSectionEdit() {
         this.props.onSectionEdit(this.props.id, true);
+    }
+
+    handleSectionDelete() {
+        this.props.onSectionDelete(this.props.id);
     }
 
     render() {
@@ -59,6 +64,7 @@ class Section extends Component {
                         <div className="btn-group float-right">
                             <button className="btn btn-primary" onClick={this.handleAdd}>+</button>
                             <button className="btn btn-primary" onClick={this.handleSectionEdit}>&#9998;</button>
+                            <button className="btn btn-danger" onClick={this.handleSectionDelete}>&#10007;</button>
                         </div>
                     </h3>
                     <hr/>
