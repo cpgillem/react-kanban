@@ -213,6 +213,12 @@ class App extends Component {
                 <div className="row">
                     {sectionComponents}
                 </div>
+                <div className="row">
+                    <div className="col-sm">
+                        <hr/>
+                        <a href="https://github.com/cpgillem/react-kanban">Source</a>
+                    </div>
+                </div>
             </div>
         );
     }
